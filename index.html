@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GrupoApp - Gestão Completa de Grupos</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div id="loginScreen" class="login-wrap">
+  <div class="login-card">
+    <div class="login-logo"><i class="fas fa-users"></i></div>
+    <h1>GrupoApp</h1>
+    <p class="subtitle">Gestão completa do seu grupo</p>
+    <form id="loginForm">
+      <div class="form-group">
+        <label>E-mail ou usuário</label>
+        <input type="text" id="loginEmail" value="admin@grupoapp.com" required />
+      </div>
+      <div class="form-group">
+        <label>Senha</label>
+        <input type="password" id="loginPassword" value="admin123" required />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">
+        <i class="fas fa-sign-in-alt"></i> Entrar
+      </button>
+      <div class="forgot"><a href="#" onclick="toast('Funcionalidade em desenvolvimento', 'warning'); return false;">Esqueci minha senha</a></div>
+    </form>
+    <div class="login-hint">
+      <strong>Demo:</strong> admin@grupoapp.com / admin123 (Administrador)<br>
+      usuario@grupoapp.com / user123 (Somente visualização)
+    </div>
+  </div>
+</div>
+
+<div id="app" class="app hidden">
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo"><i class="fas fa-users"></i></div>
+      <div>
+        <div class="sidebar-title" id="groupName">GrupoApp</div>
+        <div class="sidebar-subtitle">Sistema de Gestão</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">Principal</div>
+      <div class="nav-item active" data-view="dashboard"><i class="fas fa-home"></i> Dashboard</div>
+      <div class="nav-item" data-view="members"><i class="fas fa-users"></i> Membros</div>
+      <div class="nav-item" data-view="birthdays"><i class="fas fa-birthday-cake"></i> Aniversariantes</div>
+
+      <div class="nav-section">Financeiro</div>
+      <div class="nav-item" data-view="finance"><i class="fas fa-wallet"></i> Financeiro</div>
+      <div class="nav-item" data-view="memberships"><i class="fas fa-credit-card"></i> Mensalidades</div>
+      <div class="nav-item" data-view="income"><i class="fas fa-arrow-down"></i> Entradas</div>
+      <div class="nav-item" data-view="expenses"><i class="fas fa-arrow-up"></i> Despesas</div>
+      <div class="nav-item" data-view="reports"><i class="fas fa-chart-bar"></i> Relatórios</div>
+
+      <div class="nav-section">Comunicação</div>
+      <div class="nav-item" data-view="messages"><i class="fab fa-whatsapp"></i> Mensagens</div>
+
+      <div class="nav-section">Sistema</div>
+      <div class="nav-item" data-view="users"><i class="fas fa-user-shield"></i> Usuários</div>
+      <div class="nav-item" data-view="audit"><i class="fas fa-history"></i> Auditoria</div>
+      <div class="nav-item" data-view="settings"><i class="fas fa-cog"></i> Configurações</div>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-avatar" id="userAvatar">A</div>
+      <div class="user-info">
+        <div class="user-name" id="userName">Administrador</div>
+        <div class="user-role" id="userRole">Admin</div>
+      </div>
+      <button class="icon-btn" onclick="logout()" title="Sair"><i class="fas fa-sign-out-alt"></i></button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <button class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+      <div class="page-title" id="pageTitle">Dashboard</div>
+      <div class="topbar-actions">
+        <button class="icon-btn" onclick="toggleTheme()" title="Tema"><i class="fas fa-moon" id="themeIcon"></i></button>
+        <div class="dropdown">
+          <button class="icon-btn" onclick="toggleNotifs()" title="Notificações">
+            <i class="fas fa-bell"></i>
+            <span class="badge-count" id="notifCount">0</span>
+          </button>
+          <div class="dropdown-menu" id="notifMenu">
+            <div class="dropdown-header">Notificações</div>
+            <div id="notifList"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content" id="content"></div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<div id="modalContainer"></div>
+
+<script src="js/firebase-config.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

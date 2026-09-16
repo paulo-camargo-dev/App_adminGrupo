@@ -1,0 +1,16 @@
+# Sistema operacional e editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Dependencias e arquivos de ambiente
+node_modules/
+.env
+.env.*
+
+# Logs
+*.log
+
+# Arquivos locais de desenvolvimento
+firebase-debug.log
+firestore-debug.log
