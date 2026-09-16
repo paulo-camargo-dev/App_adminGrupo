@@ -488,7 +488,7 @@ function renderMembers(c) {
 
     <div class="card" style="padding:0">
       <div class="table-wrap">
-        <table>
+        <table class="members-table">
           <thead><tr>
             <th>Membro</th><th>Contato</th><th>Nascimento</th><th>Função</th><th>Status</th><th>Entrada</th><th>Financeiro</th><th style="text-align:right">Ações</th>
           </tr></thead>

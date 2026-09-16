@@ -465,6 +465,58 @@ tbody tr:hover { background: var(--surface-2); }
   .bday-item .btn { width: auto; flex-shrink: 0; }
   .bday-info { overflow-wrap: anywhere; }
   .form-row > div[style*="grid-column"] { grid-column: auto !important; }
+
+  .members-table thead { display: none; }
+  .members-table,
+  .members-table tbody,
+  .members-table tr,
+  .members-table td { display: block; width: 100%; }
+  .members-table tbody tr {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 12px;
+    padding: 14px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .members-table tbody tr:last-child { border-bottom: 0; }
+  .members-table tbody td {
+    min-width: 0;
+    padding: 8px 0;
+    border: 0;
+    font-size: 13px;
+  }
+  .members-table tbody td:nth-child(1),
+  .members-table tbody td:nth-child(8) { grid-column: 1 / -1; }
+  .members-table tbody td:nth-child(2)::before { content: 'Contato'; }
+  .members-table tbody td:nth-child(3)::before { content: 'Nascimento'; }
+  .members-table tbody td:nth-child(4)::before { content: 'Funcao'; }
+  .members-table tbody td:nth-child(5)::before { content: 'Status'; }
+  .members-table tbody td:nth-child(6)::before { content: 'Entrada'; }
+  .members-table tbody td:nth-child(7)::before { content: 'Financeiro'; }
+  .members-table tbody td:nth-child(n+2):nth-child(-n+7)::before {
+    display: block;
+    margin-bottom: 3px;
+    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+  }
+  .members-table .member-cell { align-items: center; gap: 12px; }
+  .members-table .member-name { font-size: 15px; }
+  .members-table .actions {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+    padding-top: 8px;
+  }
+  .members-table .actions .btn {
+    width: 100%;
+    height: 40px;
+    padding: 8px;
+  }
 }
 
 @media (max-width: 380px) {
